@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>{{lista.nombre}}</ion-title>
+
+    <ion-buttons end>
+      <button ion-button icon-only (click)="eliminarLista()">
+        <ion-icon ios="ios-trash" md="md-trash"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-card>
+
+    <ion-card-header>
+      <ion-item>
+        <ion-label floating>Nombre de la lista</ion-label>
+        <ion-input type="text" [(ngModel)]="lista.nombre"></ion-input>
+      </ion-item>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-item *ngFor="let item of lista.items; let i = index">
+        <ion-label [class.tachado]="item.completado">{{item.nombre}}</ion-label>
+        <ion-checkbox color="dark" (click)="actualizarItem(item)" [checked]="item.completado"></ion-checkbox>
+        <button (click)="eliminarItem(i)" ion-button icon-only color="danger" item-right clear>
+          <ion-icon ios="ios-trash" md="md-trash"></ion-icon>
+        </button>
+      </ion-item>
+    </ion-card-content>
+
+  </ion-card>
+
+</ion-content>
